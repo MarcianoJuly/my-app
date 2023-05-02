@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 
+import { DataClient } from './components/first-component/dataClient';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -7,4 +9,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'my-app';
+
+  createHandler(event: Event){
+    
+  }
 }
