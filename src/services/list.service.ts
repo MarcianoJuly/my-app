@@ -13,7 +13,7 @@ export class ListService {
 
   async getAddress(dados: FormGroup){
     // toggleLoader();
-    const apiUrl = `https://viacep.com.br/ws/${dados.value.cep}/json/`;
+    const apiUrl = await `https://viacep.com.br/ws/${dados.value.cep}/json/`;
   
     const response = await fetch(apiUrl);
   
