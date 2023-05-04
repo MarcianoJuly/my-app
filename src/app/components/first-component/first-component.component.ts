@@ -20,31 +20,33 @@ dataClient = new DataClient();
 formulario!: FormGroup;
 
   //Validate CEP Input
-  validarCEP(e: KeyboardEvent): void {
-     const onlyNumbers = /[0-9]|\./;  //expressão regular
-     const key = String.fromCharCode(e.keyCode);
+   validarCEP(e: KeyboardEvent): void {
+      const onlyNumbers = /[0-9]|\./;  ///expressão regular
+      const key = String.fromCharCode(e.keyCode);
 
-  //permitir somente números
-     if (!onlyNumbers.test(key)) {
-       e.preventDefault();
-       return;
-     }
-   }
+   //permitir somente números
+      if (!onlyNumbers.test(key)) {
+        e.preventDefault();
+        return;
+      }
+    }
 
   //Evento para obter o endereço
-   obterEndereco(e: KeyboardEvent): void {
-     const inputValue = (e.target as HTMLInputElement).value;
-    //verificar se temos um CEP válido
-     if (inputValue.length === 8) {
-       this.getEndereco();
-      }else{
-         this.chainLock(false)
-      }
-  }
-
+  obterEndereco(e: KeyboardEvent): void {
+    const inputValue = (<HTMLInputElement>e.target).value;
+   //verificar se temos um CEP válido
+    if (inputValue.length === 8) {
+      this.getEndereco();
+     }else{
+        this.chainLock(false)
+     }
+ }
+ valor: Object = 0;
    async getEndereco() {
       //código para obter o endereço a partir do CEP
-      if(!await this.listService.getAddress(this.formulario)){
+      this.valor = await this.listService.getAddress(this.formulario);
+      if(this.valor){
+        console.log(this.valor)
           this.chainLock(true)
       }else{
          this.chainLock(false)
@@ -54,12 +56,8 @@ formulario!: FormGroup;
   chainLock(lockSave: Boolean){
     if (lockSave) {
         // Ativa os campos depois de cep
-        this.formulario.get('adress')!.enable();
         this.formulario.get('houseNumber')!.enable();
         this.formulario.get('complement')!.enable();
-        this.formulario.get('neighborhood')!.enable();
-        this.formulario.get('city')!.enable();
-        this.formulario.get('regionState')!.enable();
       } else {
         // Desativa os campos depois de cep
         this.formulario.get('adress')!.disable();
@@ -83,12 +81,12 @@ formulario!: FormGroup;
       this.mensagens.add("Não foi possivel salvar o formulario");
       return;
     }else{
-      const formValues = this.formulario.value;
-      this.dataClient.setValue(formValues);
-      console.log(this.dataClient);
+      console.log(this.formulario.value)
+      this.dataClient.setValue(this.formulario);
       this.onSubmit.emit(this.dataClient);
       this.mensagens.add("Formulario Salvo com sucesso");
       this.formulario.reset();
+      this.chainLock(false);
     }
   }
 
@@ -116,11 +114,6 @@ formulario!: FormGroup;
     this.formulario.get('neighborhood')!.disable();
     this.formulario.get('city')!.disable();
     this.formulario.get('regionState')!.disable();
-    
-    const cepInput = document.getElementById('cepInput') as HTMLInputElement;
-
-    cepInput.addEventListener('keypress', this.validarCEP);
-    cepInput.addEventListener('keyup', this.obterEndereco.bind(this));
   }
 
   get name(){
