@@ -10,8 +10,8 @@ import { ControleService } from 'src/services/controle.service';
   styleUrls: ['./modal.component.scss']
 })
 export class ModalComponent implements OnInit{
+  allDataClients: DataClient[] = []
 
-    allDataClients: DataClient[] = []
     // definidDataClients: DataClient[]= []
     mensage = '';
     showMensage = false;
@@ -19,9 +19,7 @@ export class ModalComponent implements OnInit{
     constructor(private controla:ControleService,){};
 
     ngOnInit(): void {
-      this.controla.getFormData().subscribe(formData => {
-        this.controla = formData;
-      });
+       this.allDataClients= this.controla.allDataClients;
     };
 
     addDataClient(data: DataClient){

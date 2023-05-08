@@ -89,7 +89,7 @@ test!: string;
       this.mensagens.add("Não foi possivel salvar o formulario");
       return;
     }else{
-      this.formData.setFormData(this.formulario);
+      this.formData.allDataClients.push(this.formulario.value);
       console.log(this.formulario);
       this.mensagens.add("Formulario Salvo com sucesso");
       this.chainLock(false);

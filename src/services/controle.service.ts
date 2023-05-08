@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { DataClient } from 'src/app/components/first-component/dataClient';
 
 
 @Injectable({
@@ -7,6 +8,7 @@ import { BehaviorSubject } from 'rxjs';
 })
 
 export class ControleService {
+  allDataClients: DataClient[] = []
 
   private formDataSubject = new BehaviorSubject<any>({});
 
