@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 
+import { HttpClient } from '@angular/common/http';
 import { FirstComponentComponent } from 'src/app/components/first-component/first-component.component';
 import { FormGroup, FormControl } from '@angular/forms';
+import { Observable } from 'rxjs';
 
 
 @Injectable({
@@ -9,24 +11,10 @@ import { FormGroup, FormControl } from '@angular/forms';
 })
 export class ListService {
 
-  constructor() {}
+  constructor(private http: HttpClient) {}
 
-  async getAddress(dados: FormGroup){
+  async getAddress(cep: string ): Promise<Observable<String[]>>{ 
     // toggleLoader();
-    const apiUrl = await `https://viacep.com.br/ws/${dados.value.cep}/json/`;
-  
-    const response = await fetch(apiUrl);
-  
-    const data = await response.json();
-  
-    // Show error and reset form
-     if( data.erro === true) {
-       return true;
-     }
-      dados.get('adress')!.setValue(data.logradouro);
-      dados.get('city')!.setValue(data.localidade);
-      dados.get('neighborhood')!.setValue(data.bairro);
-      dados.get('regionState')!.setValue(data.uf);
-    return false;
+   return this.http.get<String[]>(`https://viacep.com.br/ws/${cep}/json/`);
   };
 }

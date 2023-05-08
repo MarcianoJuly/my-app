@@ -26,20 +26,6 @@ export class DataClient{
         this.city = '';
         this.regionState = '';
     }
-
-    setValue(values: any){
-        this.name = values.name;
-        this.cpfClient = values.cpfClient;
-        this.bornIn = values.bornIn;
-        this.emailClient = values.emailClient;
-        this.telephones = values.telephones;
-        this.cep = values.cep;
-        this.adress = values.adress;
-        this.houseNumber = values.houseNumber;
-        this.complement = values.complement;
-        this.neighborhood = values.neighborhood;
-        this.city = values.city;
-        this.regionState = values.regionState;  
-    }
+    
 }
     

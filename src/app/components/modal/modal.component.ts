@@ -12,15 +12,28 @@ import { ControleService } from 'src/services/controle.service';
 export class ModalComponent implements OnInit{
 
     allDataClients: DataClient[] = []
-    definidDataClients: DataClient[]= [] 
+    // definidDataClients: DataClient[]= []
+    mensage = '';
+    showMensage = false;
 
-    constructor(private controla:ControleService){};
+    constructor(private controla:ControleService,){};
 
-    createHandler(event: Event){
+    ngOnInit(): void {
+      this.controla.getFormData().subscribe(formData => {
+        this.controla = formData;
+      });
+    };
 
+    addDataClient(data: DataClient){
+      this.allDataClients.push(data);
     }
 
-    ngOnInit(): void {};
-
-    
+    showMe(){
+      if (this.allDataClients.length === 0) {
+        this.mensage = 'Não há dados salvos.';
+      } else {
+        this.mensage = 'Seus dados são: ';
+      }
+      this.showMensage = true;
+    }
 }

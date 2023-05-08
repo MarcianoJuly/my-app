@@ -10,7 +10,4 @@ import { DataClient } from './components/first-component/dataClient';
 export class AppComponent {
   title = 'my-app';
 
-  createHandler(event: Event){
-    
-  }
 }

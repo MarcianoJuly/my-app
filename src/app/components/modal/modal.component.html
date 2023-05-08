@@ -1,2 +1,2 @@
-<button class="showMe" >Informações registradas</button>
-<div>
+<button (click)="showMe()">Mostrar Dados</button>
+    <div *ngIf="showMensage">{{ mensage }}</div>

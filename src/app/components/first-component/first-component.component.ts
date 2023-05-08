@@ -4,6 +4,7 @@ import { ListService } from '../../../services/list.service';
 
 import { DataClient } from './dataClient';
 import { MessagesService } from 'src/services/messages.service';
+import { ControleService } from 'src/services/controle.service';
 
 @Component({
   selector: 'app-first-component',
@@ -13,11 +14,14 @@ import { MessagesService } from 'src/services/messages.service';
 
 export class FirstComponentComponent implements OnInit{
 
-@Output() onSubmit = new EventEmitter<DataClient>()
-
-dataClient = new DataClient();
+@Output() onSubmit = new EventEmitter<DataClient>();
+dataClient!: DataClient;
 
 formulario!: FormGroup;
+
+controle!: ControleService;
+
+test!: string;
 
   //Validate CEP Input
    validarCEP(e: KeyboardEvent): void {
@@ -41,16 +45,24 @@ formulario!: FormGroup;
         this.chainLock(false)
      }
  }
- valor: Object = 0;
+ valor: any = {};
    async getEndereco() {
-      //código para obter o endereço a partir do CEP
-      this.valor = await this.listService.getAddress(this.formulario);
-      if(this.valor){
-        console.log(this.valor)
-          this.chainLock(true)
-      }else{
-         this.chainLock(false)
-      }
+      (await
+       //código para obter o endereço a partir do CEP
+       this.listService.getAddress(this.test)).subscribe(response => {
+        this.valor = response;
+        if(this.valor){
+          this.formulario.patchValue({
+            adress: this.valor.logradouro,
+            neighborhood: this.valor.bairro,
+            city: this.valor.localidade,
+            regionState: this.valor.uf
+          });
+          this.chainLock(true);
+        } else {
+          this.chainLock(false); // não esta tratando corretamente
+        }
+      });
     }
   
   chainLock(lockSave: Boolean){
@@ -60,17 +72,13 @@ formulario!: FormGroup;
         this.formulario.get('complement')!.enable();
       } else {
         // Desativa os campos depois de cep
-        this.formulario.get('adress')!.disable();
         this.formulario.get('adress')!.setValue('');
         this.formulario.get('houseNumber')!.disable();
         this.formulario.get('houseNumber')!.setValue('');
         this.formulario.get('complement')!.disable();
         this.formulario.get('complement')!.setValue('');
-        this.formulario.get('neighborhood')!.disable();
         this.formulario.get('neighborhood')!.setValue('');
-        this.formulario.get('city')!.disable();
         this.formulario.get('city')!.setValue('');
-        this.formulario.get('regionState')!.disable();
         this.formulario.get('regionState')!.setValue('');
       }
   }
@@ -81,79 +89,73 @@ formulario!: FormGroup;
       this.mensagens.add("Não foi possivel salvar o formulario");
       return;
     }else{
-      console.log(this.formulario.value)
-      this.dataClient.setValue(this.formulario);
-      this.onSubmit.emit(this.dataClient);
+      this.formData.setFormData(this.formulario);
+      console.log(this.formulario);
       this.mensagens.add("Formulario Salvo com sucesso");
-      this.formulario.reset();
       this.chainLock(false);
     }
   }
+   
+  constructor(private listService: ListService, private mensagens: MessagesService, private formData: ControleService){};
 
-  constructor(private listService: ListService, private mensagens: MessagesService){};
+  ngOnInit(): void {
+      this.formulario = new FormGroup({
+        name: new FormControl('', [Validators.required]),
+        cpfClient: new FormControl('', [Validators.required]),
+        bornIn: new FormControl('', [Validators.required]),
+        emailClient: new FormControl('', [Validators.required]),
+        telephones: new FormControl(''),
+        cep: new FormControl('', [Validators.required]),
+        adress: new FormControl(''),
+        houseNumber: new FormControl('', [Validators.required]),
+        complement: new FormControl(''),
+        neighborhood: new FormControl(''),
+        city: new FormControl(''),
+        regionState: new FormControl(''),
+      });
 
-   ngOnInit(): void {
-    this.formulario = new FormGroup({
-      name: new FormControl('', [Validators.required]),
-      cpfClient: new FormControl('', [Validators.required]),
-      bornIn: new FormControl('', [Validators.required]),
-      emailClient: new FormControl('', [Validators.required]),
-      telephones: new FormControl(''),
-      cep: new FormControl('', [Validators.required]),
-      adress: new FormControl('', [Validators.required]),
-      houseNumber: new FormControl('', [Validators.required]),
-      complement: new FormControl(''),
-      neighborhood: new FormControl('', [Validators.required]),
-      city: new FormControl('', [Validators.required]),
-      regionState: new FormControl('', [Validators.required]),
-    });
+   this.formulario.get('houseNumber')!.disable();
+   this.formulario.get('complement')!.disable();
+ }
 
-    this.formulario.get('adress')!.disable();
-    this.formulario.get('houseNumber')!.disable();
-    this.formulario.get('complement')!.disable();
-    this.formulario.get('neighborhood')!.disable();
-    this.formulario.get('city')!.disable();
-    this.formulario.get('regionState')!.disable();
-  }
+ get name(){
+   return this.formulario.get('name')!;
+ }
 
-  get name(){
-    return this.formulario.get('name')!;
-  }
+ get cpfClient(){
+   return this.formulario.get('cpfClient')!;
+ }
 
-  get cpfClient(){
-    return this.formulario.get('cpfClient')!;
-  }
+ get bornIn(){
+   return this.formulario.get('bornIn')!;
+ }
 
-  get bornIn(){
-    return this.formulario.get('bornIn')!;
-  }
+ get emailClient(){
+   return this.formulario.get('emailClient')!;
+ }
 
-  get emailClient(){
-    return this.formulario.get('emailClient')!;
-  }
+ get houseNumber(){
+   return this.formulario.get('houseNumber')!;
+ }
 
-  get houseNumber(){
-    return this.formulario.get('houseNumber')!;
-  }
+ get cep(){
+   return this.formulario.get('cep')!;
+ }
 
-  get cep(){
-    return this.formulario.get('cep')!;
-  }
+ get adress(){
+   return this.formulario.get('adress')!;
+ }
 
-  get adress(){
-    return this.formulario.get('adress')!;
-  }
+ get neighborhood(){
+   return this.formulario.get('neighborhood')!;
+ }
 
-  get neighborhood(){
-    return this.formulario.get('neighborhood')!;
-  }
+ get city(){
+   return this.formulario.get('city')!;
+ }
 
-  get city(){
-    return this.formulario.get('city')!;
-  }
+ get regionState(){
+   return this.formulario.get('regionState')!;
+ }
 
-  get regionState(){
-    return this.formulario.get('regionState')!;
-  }
-  
 }
