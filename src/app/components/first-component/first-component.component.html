@@ -42,14 +42,14 @@
         <label>Rua:</label>
         <input type="text" formControlName="adress" name="rua" placeholder="Rua"  data-input class="onlyRead" readonly/>
         <div *ngIf="adress.invalid && forDir.submitted" class="validation-error">
-            O campo obrigatorio!
+            O campo obrigatorio preenchido automaticamente via cep
         </div> 
         </div>
     <div class="form-group">
         <label>Digite o número da residência:</label>
         <input type="text" formControlName="houseNumber" name="numeroCasa" placeholder="Digite o número da residência"  data-input />
         <div *ngIf="houseNumber.invalid && forDir.submitted" class="validation-error">
-            O campo obrigatorio!
+            O campo obrigatorio preenchido automaticamente via cep
         </div>      
         </div>
     <div class="form-group">
@@ -60,14 +60,14 @@
         <label>Bairro:</label>
         <input type="text" formControlName="neighborhood" name="bairro" placeholder="Bairro"  data-input class="onlyRead" readonly/>    
         <div *ngIf="neighborhood.invalid && forDir.submitted" class="validation-error">
-            O campo obrigatorio!
+            O campo obrigatorio preenchido automaticamente via cep
         </div>      
     </div>
     <div class="form-group">
         <label>Cidade:</label>
         <input type="text" formControlName="city" name="cidade" placeholder="Cidade" data-input  class="onlyRead" readonly/>
         <div *ngIf="city.invalid && forDir.submitted" class="validation-error">
-            O campo obrigatorio!
+            O campo obrigatorio preenchido automaticamente via cep
         </div>     
     </div>
     <div class="form-group">
@@ -102,7 +102,7 @@
             <option value="TO">Tocantins</option>
         </select>
         <div *ngIf="regionState.invalid && forDir.submitted" class="validation-error">
-            O campo obrigatorio!
+            O campo obrigatorio preenchido automaticamente via cep
         </div>  
     </div>
     <div class="form-group">

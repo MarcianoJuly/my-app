@@ -45,11 +45,12 @@ test!: string;
         this.chainLock(false)
      }
  }
+
  valor: any = {};
    async getEndereco() {
       (await
        //código para obter o endereço a partir do CEP
-       this.listService.getAddress(this.test)).subscribe(response => {
+        this.listService.getAddress(this.test)).subscribe(response => {
         this.valor = response;
         if(this.valor){
           this.formulario.patchValue({
@@ -84,19 +85,21 @@ test!: string;
   }
 
 
-  submit() {
+async submit() {
+    const formDatas = this.formulario.value;
     if(this.formulario.invalid){
       this.mensagens.add("Não foi possivel salvar o formulario");
       return;
     }else{
-      this.formData.allDataClients.push(this.formulario.value);
-      console.log(this.formulario);
+      this.dataClient = formDatas;
+      this.controller.allDataClients.push(this.dataClient);
       this.mensagens.add("Formulario Salvo com sucesso");
       this.chainLock(false);
+      this.formulario.reset();
     }
   }
    
-  constructor(private listService: ListService, private mensagens: MessagesService, private formData: ControleService){};
+  constructor(private listService: ListService, private mensagens: MessagesService, private controller: ControleService){};
 
   ngOnInit(): void {
       this.formulario = new FormGroup({
@@ -106,12 +109,12 @@ test!: string;
         emailClient: new FormControl('', [Validators.required]),
         telephones: new FormControl(''),
         cep: new FormControl('', [Validators.required]),
-        adress: new FormControl(''),
+        adress: new FormControl('', [Validators.required]),
         houseNumber: new FormControl('', [Validators.required]),
         complement: new FormControl(''),
-        neighborhood: new FormControl(''),
-        city: new FormControl(''),
-        regionState: new FormControl(''),
+        neighborhood: new FormControl('', [Validators.required]),
+        city: new FormControl('', [Validators.required]),
+        regionState: new FormControl('', [Validators.required]),
       });
 
    this.formulario.get('houseNumber')!.disable();

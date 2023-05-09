@@ -1,2 +1,10 @@
-<button (click)="showMe()">Mostrar Dados</button>
-    <div *ngIf="showMensage">{{ mensage }}</div>
+<button class="button" (click)="showMe()">Mostrar Dados</button>
+    <div class="modal" *ngIf="showMensage">
+        <h2> {{ title }}</h2>
+        <button class="clear" (click)="zero()">
+            <fa-icon [icon]="faTimes"></fa-icon>
+        </button>
+        <div class="modal-message">
+            {{ mensage }}
+        </div>
+    </div>
