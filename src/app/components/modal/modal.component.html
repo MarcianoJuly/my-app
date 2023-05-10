@@ -5,6 +5,19 @@
             <fa-icon [icon]="faTimes"></fa-icon>
         </button>
         <div class="modal-message">
-            {{ mensage }}
+            <div *ngFor="let data of allDataClients">
+                <div>
+                    <br>Nome: {{data.name}}
+                    <br> CPF :{{data.cep}}
+                    <br> Data de nascimento: {{data.bornIn}}
+                    <br> Email: {{data.emailClient}}
+                    <br> Telefone: {{data.telephones}}
+                    <br> CEP: {{data.cep}}
+                    <br> Endereço: {{data.adress}} Numero da casa: {{data.houseNumber}}
+                    <br> Complemento: {{data.complement}}
+                    <br> Bairro: {{data.neighborhood}}
+                    <br> Cidade: {{data.city}} Estado: {{data.regionState}}
+                </div>
+            </div>
         </div>
     </div>

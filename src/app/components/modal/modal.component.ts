@@ -12,15 +12,14 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./modal.component.scss']
 })
 export class ModalComponent implements OnInit{
-  allDataClients: DataClient[] = []
+  allDataClients: DataClient[] = [];
+  definidDataClients!: DataClient;
 
-    // definidDataClients: DataClient[]= []
-    mensage = '';
     title = ''
     showMensage = false;
     faTimes = faTimes;
 
-    constructor(private controla:ControleService,){};
+    constructor(private controla:ControleService){};
 
     ngOnInit(): void {
        this.allDataClients= this.controla.allDataClients;
@@ -33,20 +32,8 @@ export class ModalComponent implements OnInit{
     showMe(){
       if (this.allDataClients.length === 0) {
         this.title= 'Não há dados salvos.';
-        this.mensage = '';
       } else {
-        let dadosFormatados = this.allDataClients.map(dado => `Nome :${dado.name}
-                                                              \n CPF :${dado.cep}
-                                                              \n Data de nascimento: ${dado.bornIn}
-                                                              \n Email: ${dado.emailClient}
-                                                              \n Telefone: ${dado.telephones}
-                                                              \n CEP: ${dado.cep}
-                                                              \n Endereço: ${dado.adress} Numero da casa: ${dado.houseNumber}
-                                                              \n Complemento: ${dado.complement}
-                                                              \n Bairro: ${dado.neighborhood}
-                                                              \n Cidade: ${dado.city} Estado: ${dado.regionState}`);
-        this.title = 'Os dados registrados são:';
-        this.mensage = dadosFormatados.join('\n');
+        this.title = 'Os dados são: ';
       }
       this.showMensage = true;
     }
