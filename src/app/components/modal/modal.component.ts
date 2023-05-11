@@ -23,10 +23,11 @@ export class ModalComponent implements OnInit{
 
     ngOnInit(): void {
        this.allDataClients= this.controla.allDataClients;
+       this.showMe();
     };
 
-    addDataClient(data: DataClient){
-      this.allDataClients.push(data);
+    delete(index: number){
+      this.controla.delete(index);
     }
 
     showMe(){
@@ -38,7 +39,4 @@ export class ModalComponent implements OnInit{
       this.showMensage = true;
     }
 
-    zero(){
-      this.showMensage = false;
-    }
 }

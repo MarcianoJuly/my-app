@@ -1,3 +1,4 @@
+<h2 class="title">Formulario</h2>
 <form (ngSubmit)="submit()" [formGroup]="formulario" #forDir="ngForm">
     <div class="form-group">
         <label>Nome:</label>
@@ -8,7 +9,7 @@
     </div>
     <div class="form-group">
         <label>CPF:</label>
-        <input type="text" formControlName="cpfClient" name="cpf" placeholder="Ex: XXX.XXX.XXX-XX" pattern="[0-9]{11}" maxlength="11" minlength="11">
+        <input type="text" formControlName="cpfClient" name="cpfClient" placeholder="Ex: XXX.XXX.XXX-XX" pattern="[0-9]{11}" maxlength="11" minlength="11">
         <div *ngIf="cpfClient.invalid && forDir.submitted" class="validation-error">
             O CPF e obrigatorio!
         </div>

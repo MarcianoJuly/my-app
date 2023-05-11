@@ -9,6 +9,9 @@ import { FirstComponentComponent } from './components/first-component/first-comp
 import { ModalComponent } from './components/modal/modal.component';
 import { MensagemComponent } from './components/mensagem/mensagem.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { RouterLink } from '@angular/router';
+import { CabecalhoComponent } from './components/cabecalho/cabecalho.component';
+import { HomeComponent } from './components/home/home.component';
 
 
 @NgModule({
@@ -16,7 +19,9 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     AppComponent,
     FirstComponentComponent,
     ModalComponent,
-    MensagemComponent
+    MensagemComponent,
+    CabecalhoComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -25,8 +30,9 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     ReactiveFormsModule,
     HttpClientModule,
     FontAwesomeModule,
+    RouterLink,
   ],
   providers: [],
-  bootstrap: [AppComponent,FirstComponentComponent]
+  bootstrap: [AppComponent,FirstComponentComponent,ModalComponent,MensagemComponent]
 })
 export class AppModule { }

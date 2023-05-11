@@ -14,6 +14,11 @@ export class ControleService {
 
   constructor() { }
   
+  delete(index: number){
+    console.log(this.allDataClients)
+    this.allDataClients.splice(index, 1);
+  }
+
   setFormData(formData: any) {
     this.formDataSubject.next(formData);
   }

@@ -1,14 +1,12 @@
-<button class="button" (click)="showMe()">Mostrar Dados</button>
-    <div class="modal" *ngIf="showMensage">
-        <h2> {{ title }}</h2>
-        <button class="clear" (click)="zero()">
-            <fa-icon [icon]="faTimes"></fa-icon>
-        </button>
+<h2 class="title">Lista de dados</h2>
+<section id="data-page">
+    <div class="modal">
+        <h3> {{ title }}</h3>
         <div class="modal-message">
-            <div *ngFor="let data of allDataClients">
+            <div *ngFor="let data of allDataClients; let myIndex = index">
                 <div>
                     <br>Nome: {{data.name}}
-                    <br> CPF :{{data.cep}}
+                    <br> CPF :{{data.cpfClient}}
                     <br> Data de nascimento: {{data.bornIn}}
                     <br> Email: {{data.emailClient}}
                     <br> Telefone: {{data.telephones}}
@@ -18,6 +16,9 @@
                     <br> Bairro: {{data.neighborhood}}
                     <br> Cidade: {{data.city}} Estado: {{data.regionState}}
                 </div>
+                <button (click)="delete(myIndex)">Deletar</button>
+                <button>Editar</button> 
             </div>
         </div>
     </div>
+</section>
