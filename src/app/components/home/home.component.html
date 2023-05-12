@@ -2,7 +2,7 @@
 <div class="search-container">
     <form>
         <fa-icon [icon]="faSearch"></fa-icon>
-        <input type="text" placeholder="Busque por um perfil" (keypress)="obterDado($event)">
+        <input type="text" placeholder="Busque por um perfil" (keypress)="obterDado($event)" (keyup)="obterDado($event)">
     </form>
 </div>
 <div *ngIf="show">
