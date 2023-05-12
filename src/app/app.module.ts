@@ -12,6 +12,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { RouterLink } from '@angular/router';
 import { CabecalhoComponent } from './components/cabecalho/cabecalho.component';
 import { HomeComponent } from './components/home/home.component';
+import { EditDataComponent } from './components/edit-data/edit-data.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { HomeComponent } from './components/home/home.component';
     ModalComponent,
     MensagemComponent,
     CabecalhoComponent,
-    HomeComponent
+    HomeComponent,
+    EditDataComponent
   ],
   imports: [
     BrowserModule,

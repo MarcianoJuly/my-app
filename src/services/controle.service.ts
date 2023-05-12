@@ -10,22 +10,14 @@ import { DataClient } from 'src/app/components/first-component/dataClient';
 export class ControleService {
   allDataClients: DataClient[] = []
 
-  private formDataSubject = new BehaviorSubject<any>({});
-
   constructor() { }
   
   delete(index: number){
-    console.log(this.allDataClients)
     this.allDataClients.splice(index, 1);
   }
 
-  setFormData(formData: any) {
-    this.formDataSubject.next(formData);
+  getData(index: number): DataClient{
+    return this.allDataClients[index];
   }
-
-  getFormData() {
-    return this.formDataSubject.asObservable();
-  }
-
 
 }
