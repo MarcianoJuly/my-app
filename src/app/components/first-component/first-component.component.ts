@@ -92,7 +92,7 @@ async submit() {
       return;
     }else{
       this.dataClient = formDatas;
-      this.controller.allDataClients.push(this.dataClient);
+      this.controller.save(this.dataClient);
       this.mensagens.add("Formulario Salvo com sucesso");
       this.chainLock(false);
       this.formulario.reset();
