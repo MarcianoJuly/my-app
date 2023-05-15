@@ -15,7 +15,7 @@ import { MessagesService } from 'src/services/messages.service';
 export class EditDataComponent {
   dataEditable!: DataClient;
   formulario!: FormGroup;
-  test: any;
+  test!: any;
 
   constructor(private controla:ControleService, private listService:ListService, private route:Router, private mensagens:MessagesService){}
 
