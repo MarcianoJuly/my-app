@@ -2,23 +2,45 @@
 <section id="data-page">
     <div class="modal">
         <h3> {{ title }}</h3>
-        <div class="modal-message">
-            <div *ngFor="let data of allDataClients; let myIndex = index">
-                <div>
-                    <br>Nome: {{data.name}}
-                    <br> CPF :{{data.cpfClient}}
-                    <br> Data de nascimento: {{data.bornIn}}
-                    <br> Email: {{data.emailClient}}
-                    <br> Telefone: {{data.telephones}}
-                    <br> CEP: {{data.cep}}
-                    <br> Endereço: {{data.adress}} Numero da casa: {{data.houseNumber}}
-                    <br> Complemento: {{data.complement}}
-                    <br> Bairro: {{data.neighborhood}}
-                    <br> Cidade: {{data.city}} Estado: {{data.regionState}}
-                </div>
-                <button (click)="delete(myIndex)">Deletar</button>
-                <button (click)="editar(myIndex)">Editar</button> 
+        <table>
+            <div class="modal-message" *ngIf="allDataClients.length > 0">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>CPF</th>
+                        <th>Data de Nascimento</th>
+                        <th>Email</th>
+                        <th>Telefone</th>
+                        <th>CEP</th>
+                        <th>Endereço</th>
+                        <th>Número</th>
+                        <th>Complemento</th>
+                        <th>Bairro</th>
+                        <th>Cidade</th>
+                        <th>Estado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let data of allDataClients; let myIndex = index">
+                        <td>{{data.name}}</td>
+                        <td>{{data.cpfClient}}</td>
+                        <td>{{data.bornIn}}</td>
+                        <td>{{data.emailClient}}</td>
+                        <td>{{data.telephones}}</td>
+                        <td>{{data.cep}}</td>
+                        <td>{{data.adress}}</td>
+                        <td>{{data.houseNumber}}</td>
+                        <td>{{data.complement}}</td>
+                        <td>{{data.neighborhood}}</td>
+                        <td>{{data.city}}</td>
+                        <td>{{data.regionState}}</td>
+                        <td>
+                            <button (click)="delete(myIndex)">Deletar</button>
+                            <button (click)="editar(myIndex)">Editar</button> 
+                        </td>
+                    </tr>
+                </tbody>
             </div>
-        </div>
+        </table>
     </div>
 </section>
