@@ -1,6 +1,6 @@
 <h2 class="title">Lista de dados</h2>
 <section id="data-page">
-    <form>
+    <form class="pesquisa">
         <fa-icon [icon]="faSearch"></fa-icon>
         <input type="text" placeholder="Busque por um perfil" (keypress)="obterDado($event)" (keyup)="obterDado($event)">
     </form>
@@ -39,8 +39,13 @@
                         <td>{{data.city}}</td>
                         <td>{{data.regionState}}</td>
                         <td>
-                            <button (click)="delete(myIndex)">Deletar</button>
-                            <button (click)="editar(myIndex)">Editar</button> 
+                            <button (click)="delete(myIndex)">
+                                <fa-icon [icon]="faTrash"></fa-icon>
+                                Deletar
+                            </button>
+                            <button (click)="editar(myIndex)">
+                                <fa-icon [icon]="faPenToS"></fa-icon>
+                                Editar</button> 
                         </td>
                     </tr>
                 </tbody>

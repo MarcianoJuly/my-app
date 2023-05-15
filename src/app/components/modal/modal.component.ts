@@ -4,10 +4,9 @@ import { DataClient } from '../first-component/dataClient';
 
 import { ControleService } from 'src/services/controle.service';
 
-import { faSearch, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faSearch, faTimes, faTrash, faPenToSquare } from '@fortawesome/free-solid-svg-icons';
 import { MessagesService } from 'src/services/messages.service';
 import { Router } from '@angular/router';
-import { EditDataComponent } from '../edit-data/edit-data.component';
 
 @Component({
   selector: 'app-modal',
@@ -16,10 +15,9 @@ import { EditDataComponent } from '../edit-data/edit-data.component';
 })
 export class ModalComponent implements OnInit{
   allDataClients: DataClient[] = [];
-    faSearch = faSearch;
+    faSearch = faSearch; faTrash = faTrash; faTimes = faTimes; faPenToS = faPenToSquare;
     title = ''
     showMensage = false;
-    faTimes = faTimes;
 
     constructor(private controla:ControleService,
                 private mensage: MessagesService,

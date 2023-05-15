@@ -2,7 +2,7 @@
 
 
 /* Formulario*/
-form {
+.form {
     width: 450px;
     margin: 0 auto;
 }
@@ -32,4 +32,10 @@ input[type="submmit"]:hover{
 /*Titulos*/
 .title {
     text-align: center;
+}
+
+/*Pesquisa*/
+
+.pesquisa {
+    text-align: left;
 }
