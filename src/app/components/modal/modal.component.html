@@ -1,5 +1,9 @@
 <h2 class="title">Lista de dados</h2>
 <section id="data-page">
+    <form>
+        <fa-icon [icon]="faSearch"></fa-icon>
+        <input type="text" placeholder="Busque por um perfil" (keypress)="obterDado($event)" (keyup)="obterDado($event)">
+    </form>
     <div class="modal">
         <h3> {{ title }}</h3>
         <table>

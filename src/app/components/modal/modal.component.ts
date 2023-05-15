@@ -4,7 +4,7 @@ import { DataClient } from '../first-component/dataClient';
 
 import { ControleService } from 'src/services/controle.service';
 
-import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import { faSearch, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { MessagesService } from 'src/services/messages.service';
 import { Router } from '@angular/router';
 import { EditDataComponent } from '../edit-data/edit-data.component';
@@ -16,7 +16,7 @@ import { EditDataComponent } from '../edit-data/edit-data.component';
 })
 export class ModalComponent implements OnInit{
   allDataClients: DataClient[] = [];
-
+    faSearch = faSearch;
     title = ''
     showMensage = false;
     faTimes = faTimes;
@@ -54,4 +54,14 @@ export class ModalComponent implements OnInit{
       this.showMensage = true;
     }
 
+    obterDado(e: KeyboardEvent): void {
+      const inputValue = (<HTMLInputElement>e.target).value;
+     //verificar se temos um CEP válido
+      this.allDataClients = this.controla.searsh(inputValue);
+      if(this.allDataClients.length==0){
+        this.showMensage = false;
+      }else{
+        this.showMensage = true;
+      }
+    }
 }
