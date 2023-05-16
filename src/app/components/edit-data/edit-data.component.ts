@@ -15,7 +15,7 @@ import { MessagesService } from 'src/services/messages.service';
 export class EditDataComponent {
   dataEditable!: DataClient;
   formulario!: FormGroup;
-  test!: any;
+  test!: string;
 
   constructor(private controla:ControleService, private listService:ListService, private route:Router, private mensagens:MessagesService){}
 
@@ -28,7 +28,7 @@ export class EditDataComponent {
       bornIn: new FormControl(this.dataEditable.bornIn, [Validators.required]),
       emailClient: new FormControl(this.dataEditable.emailClient, [Validators.required]),
       telephones: new FormControl(this.dataEditable.telephones),
-      cepC: new FormControl(this.dataEditable.cep, [Validators.required]),
+      cep: new FormControl(this.dataEditable.cep, [Validators.required]),
       adress: new FormControl(this.dataEditable.adress, [Validators.required]),
       houseNumber: new FormControl(this.dataEditable.houseNumber, [Validators.required]),
       complement: new FormControl(this.dataEditable.complement),
@@ -36,7 +36,7 @@ export class EditDataComponent {
       city: new FormControl(this.dataEditable.city, [Validators.required]),
       regionState: new FormControl(this.dataEditable.regionState, [Validators.required]),
     });
-    this.test = this.dataEditable.cep;
+    this.test = this.dataEditable.cep.toString();
   }
 
   save(){
@@ -78,8 +78,8 @@ export class EditDataComponent {
     return this.formulario.get('houseNumber')!;
   }
   
-  get cepC(){
-    return this.formulario.get('cepC')!;
+  get cep(){
+    return this.formulario.get('cep')!;
   }
   
   get adress(){
