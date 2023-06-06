@@ -5,6 +5,7 @@ import { ListService } from '../../../services/list.service';
 import { DataClient } from './dataClient';
 import { MessagesService } from 'src/services/messages.service';
 import { ControleService } from 'src/services/controle.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-first-component',
@@ -65,7 +66,7 @@ test!: string;
         }
       });
     }
-  
+
   chainLock(lockSave: Boolean){
     if (lockSave) {
         // Ativa os campos depois de cep
@@ -86,20 +87,33 @@ test!: string;
 
 
 async submit() {
-    const formDatas = this.formulario.value;
     if(this.formulario.invalid){
       this.mensagens.add("Não foi possivel salvar o formulario");
       return;
     }else{
-      this.dataClient = formDatas;
-      this.controller.save(this.dataClient);
+      this.controller.create(this.formulario.value).subscribe(resul => console.log(resul));
       this.mensagens.add("Formulario Salvo com sucesso");
-      this.chainLock(false);
-      this.formulario.reset();
+      this.resetForm();
+      this.rota.navigate(['home']);
     }
   }
-   
-  constructor(private listService: ListService, private mensagens: MessagesService, private controller: ControleService){};
+
+  async resetForm(){
+    this.chainLock(false);
+    this.formulario.reset();
+  }
+
+  async cancel() {
+      this.resetForm();
+      this.mensagens.add("Inserção cancelada")
+      this.rota.navigate(['home']);
+  }
+
+  constructor(private listService: ListService,
+              private mensagens: MessagesService,
+              private controller: ControleService,
+              private rota: Router
+              ){};
 
   ngOnInit(): void {
       this.formulario = new FormGroup({

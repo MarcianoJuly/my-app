@@ -13,7 +13,7 @@ export class ListService {
 
   constructor(private http: HttpClient) {}
 
-  async getAddress(cep: string ): Promise<Observable<String[]>>{ 
+  async getAddress(cep: string ): Promise<Observable<String[]>>{
     // toggleLoader();
    return this.http.get<String[]>(`https://viacep.com.br/ws/${cep}/json/`);
   };

@@ -1,6 +1,8 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { Injectable, Input } from '@angular/core';
+import { BehaviorSubject, Observable, catchError, tap, throwError } from 'rxjs';
 import { DataClient } from 'src/app/components/first-component/dataClient';
+import { PROXY_CONFIG } from 'src/proxy.conf';
 
 
 @Injectable({
@@ -8,37 +10,41 @@ import { DataClient } from 'src/app/components/first-component/dataClient';
 })
 
 export class ControleService {
-  allDataClients: DataClient[] = []
-  editDataClient!: DataClient;
 
-  constructor() { }
-  
-  save(newData: DataClient){
-    this.allDataClients.push(newData);
+  constructor(private httpClient: HttpClient) {}
+
+  list(){
+    return this.httpClient.get<DataClient[]>(`${PROXY_CONFIG.baseURl}`)
+    .pipe(
+      tap(tipo => console.log(tipo))
+    );
   }
 
-  delete(index: number){
-    this.allDataClients.splice(index, 1);
+  create(newData: DataClient){
+    return this.httpClient.post<DataClient>(`${PROXY_CONFIG.baseURl}`, newData);
   }
 
-  getData(index: number){
-    this.editDataClient = this.allDataClients[index];
-    this.delete(index);
+  update(alterData: DataClient){
+    return this.httpClient.put<DataClient>(`${PROXY_CONFIG.baseURl}/${alterData.cpfClient}`, alterData);
   }
 
-  saveBack(){
-    this.allDataClients.push(this.editDataClient);
+  deletaTudo(cpf: string){
+    return this.httpClient.delete(`${PROXY_CONFIG.baseURl}/${cpf}`)
+    .pipe(
+      tap(response => console.log(response)),
+        catchError(error => {
+          console.error(error);
+          return throwError('Erro ao excluir objeto');
+        })
+      );
   }
 
-  searsh(input: string): DataClient[]{
-    let searshData: DataClient[] = [];
-    let searshInput = input.toLowerCase().trim();
+  getData(cpf: string){
+    return this.httpClient.get<DataClient>(`${PROXY_CONFIG.baseURl}/${cpf}`);
+  }
 
-    for(const data of this.allDataClients){
-      if(data.name.toLocaleLowerCase().includes(searshInput) || data.cpfClient.toLocaleLowerCase().includes(searshInput))
-        searshData.push(data);
-      }
-    return searshData;
+  searsh(input: string){
+    return this.httpClient.get<DataClient[]>(`${PROXY_CONFIG.baseURl}/${input}`);
   }
 
 }

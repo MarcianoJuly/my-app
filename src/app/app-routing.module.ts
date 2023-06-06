@@ -5,12 +5,13 @@ import { ModalComponent } from './components/modal/modal.component';
 import { FirstComponentComponent } from './components/first-component/first-component.component';
 import { HomeComponent } from './components/home/home.component';
 import { EditDataComponent } from './components/edit-data/edit-data.component';
+import { DataResolver } from './components/guards/data.resolver';
 
 const routes: Routes = [
   {path: 'modalDatas', component: ModalComponent},
   {path: 'formulario', component: FirstComponentComponent},
   {path: 'home',component: HomeComponent},
-  {path: 'edit', component: EditDataComponent}
+  {path: 'edit/:CPF', component: EditDataComponent, resolve: { data : DataResolver}}
 ];
 
 @NgModule({
