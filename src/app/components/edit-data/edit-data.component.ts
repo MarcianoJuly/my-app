@@ -47,7 +47,7 @@ export class EditDataComponent {
     if(this.formulario.invalid){
       this.mensagens.add("Não foi possivel salvar");
     }else{
-      await this.controla.update(this.formulario.value);
+       this.controla.update(this.formulario.value).subscribe(resul => console.log(resul));
       this.mensagens.add("Mudança salva com sucesso");
       this.route.navigate(['modalDatas']);
     }
