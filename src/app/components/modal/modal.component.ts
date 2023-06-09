@@ -39,7 +39,7 @@ export class ModalComponent implements OnInit{
     ngOnInit(): void {};
 
     async deletar(dados: DataClient){ //não ta pronto
-      await this.controla.deletaTudo(dados.cpfClient);
+      this.controla.deletaTudo(dados.cpfClient).subscribe(resul => console.log(resul));
       this.mensage.add("Dado excluido com sucesso");
 
       this.route.navigate(['home']);
