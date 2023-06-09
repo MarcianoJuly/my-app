@@ -25,7 +25,7 @@ export class ControleService {
   }
 
   update(alterData: DataClient){
-    return this.httpClient.put<DataClient>(`${PROXY_CONFIG.baseURl}/${alterData.cpfClient}`, alterData);
+    return this.httpClient.put<DataClient>(`${PROXY_CONFIG.baseURl}/edit/${alterData.cpfClient}`, alterData);
   }
 
   deletaTudo(cpf: string){
