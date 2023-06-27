@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, Input } from '@angular/core';
 import { BehaviorSubject, Observable, catchError, tap, throwError } from 'rxjs';
-import { DataClient } from 'src/app/components/first-component/dataClient';
+import { DataClient } from 'src/app/models/dataClient';
 import { PROXY_CONFIG } from 'src/proxy.conf';
 
 

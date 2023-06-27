@@ -6,7 +6,7 @@ import {
 } from '@angular/router';
 import { Observable, of } from 'rxjs';
 import { ControleService } from 'src/services/controle.service';
-import { DataClient } from '../first-component/dataClient';
+import { DataClient } from '../../models/dataClient';
 
 @Injectable({
   providedIn: 'root'

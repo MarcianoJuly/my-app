@@ -2,7 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ListService } from '../../../services/list.service';
 
-import { DataClient } from './dataClient';
+import { DataClient } from '../../models/dataClient';
 import { MessagesService } from 'src/services/messages.service';
 import { ControleService } from 'src/services/controle.service';
 import { Router } from '@angular/router';

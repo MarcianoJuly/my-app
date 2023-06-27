@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { DataClient } from '../first-component/dataClient';
+import { DataClient } from '../../models/dataClient';
 import { ControleService } from 'src/services/controle.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ListService } from 'src/services/list.service';

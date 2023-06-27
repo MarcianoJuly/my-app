@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 
 
-/* Formulario*/
+/* Formulario*/ //Funciona
 .form {
     width: 450px;
     margin: 0 auto;
@@ -13,29 +13,38 @@
     margin-bottom: 1em;
 }
 
-input[type="submmit"]{
-    background-color: #efefef;
-    border: 2px solid transparent;
-    padding: 0.6em 1em;
-    font-weight: bold;
-    font-size: 1.1em;
-    cursor: pointer;
-    transition: 0.4s;
-}
-
-input[type="submmit"]:hover{
-    color: #DEC129;
-    border-color: aqua;
-    background-color: transparent;
-}
-
-/*Titulos*/
+/*Titulos*/ //funciona
 .title {
     text-align: center;
 }
 
-/*Pesquisa*/
+/*Pesquisa*/ //funciona
 
 .pesquisa {
     text-align: left;
+}
+
+/*Body*/
+
+.body {
+    background-image: 'app/models/pasta/Captura\ de\ tela\ 2023-06-26\ 194525.png';
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+/* Não funfa */
+input[type="submmit"]{
+  background-color: #efefef;
+  border: 2px solid transparent;
+  padding: 0.6em 1em;
+  font-weight: bold;
+  font-size: 1.1em;
+  cursor: pointer;
+  transition: 0.4s;
+}
+
+input[type="submmit"]:hover{
+  color: #DEC129;
+  border-color: aqua;
+  background-color: transparent;
 }

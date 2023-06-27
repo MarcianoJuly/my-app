@@ -1,4 +1,4 @@
-import { DataClient } from 'src/app/components/first-component/dataClient';
+import { DataClient } from 'src/app/models/dataClient';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 
